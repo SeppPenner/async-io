@@ -119,10 +119,10 @@ module Async
 				end
 			end
 			
-			def connect(&block)
+			def connect(local_address = nil, &block)
 				case specification
 				when Addrinfo
-					Socket.connect(specification, &block)
+					Socket.connect(specification, local_address,&block)
 				when ::BasicSocket
 					yield Async::IO.try_convert(specification)
 				when BasicSocket
